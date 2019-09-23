@@ -6,45 +6,60 @@
 #    By: zwode <zwode@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/20 16:00:15 by bglover           #+#    #+#              #
-#    Updated: 2019/09/06 20:54:51 by zwode            ###   ########.fr        #
+#    Updated: 2019/09/11 14:18:47 by zwode            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
-NAME_C = srcs/ft_printf.c srcs/flags.c
-#NAME_O = ft_printf.o flags.o
+C = clang
 
-SRCS = $(addprefix srcs/,$(NAME_C))
-OBJS = $(addprefix musor/,$(NAME_C:.c=.o))
+NAME = libftprintf.a
+NAME_C = ft_printf.c flags_2.c flags.c
+
+DIR_S = srcs
+DIR_O = outF
+
+SRCS = $(addprefix $(DIR_S)/,$(NAME_C))
+OBJS = $(addprefix $(DIR_O)/,$(NAME_C:%.c=%.o))
 
 TEST = srcs/test.c
 
-FLAGS = -Wall -Wextra -Werror -02
+FLAGS = -Wall -Wextra -Werror
 
-CP = ./include/libft/libft.a
+CP = include/libft/libft.a
 
 LIBFT = -C include/libft/
 
 INCLUDES = include
 
-all: $(NAME)
-$(NAME): $(NAME_O)
+all:$(NAME)
 
+$(NAME): $(OBJS)
 	@make $(LIBFT)
-	@cp $(CP) ./$(NAME)
-	@gcc -c $(NAME_C)
+	@cp $(CP) $(NAME)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
-#	gcc $(TEST) $(NAME)
+	@printf '\033[32m[ ✔ ]done! %s\n'
 
-	@mkdir -p musor
-	musor/%.o: srcs/%.c
-	@gcc $(FLAGS) -I $(INCLUDES) -o $@ -c $<
+$(DIR_O)/%.o: $(DIR_S)/%.c
+	@mkdir -p outF
+	@$(CC) $(FLAGS) -I $(INCLUDES) -o $@ -c $<
 clean:
-	rm -rf $(NAME_O)
-	make fclean $(LIBFT)
+	@rm -f $(OBJS)
+	@rm -rf $(DIR_O)
+	@make clean $(LIBFT)
+	@rm -rf a.out
+	@printf '\033[32m[ ✔ ]clean! %s\n'
 
 fclean:clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
+	@make fclean $(LIBFT)
 
 re: fclean all
+	@printf '\033[32m[ ✔ ]re! %s\n'
+
+norm:
+	@norminette $(DIR_S)/*.c include/*.c
+
+gcc: clean
+	@gcc $(TEST) $(NAME)
+	@printf '\033[32m[ ✔ ]compile! %s\n'

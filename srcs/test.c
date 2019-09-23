@@ -3,7 +3,7 @@
 
 int		main(void)
 {
-	printf("Or printf : %ld%%\n", 12333343435453453);
-	ft_printf("My printf : %ld%%\n", 12333343435453453);
+	printf("Or printf :%100d\n", 13534543321213);
+	ft_printf("My printf :%100.d\n", 13534543321213);
 	return(0);
 }

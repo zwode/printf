@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bglover <bglover@student.42.fr>            +#+  +:+       +#+         #
+#    By: zwode <zwode@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/20 16:00:15 by bglover           #+#    #+#              #
-#    Updated: 2019/08/28 22:37:33 by zwode            ###   ########.fr        #
+#    Updated: 2019/09/06 21:56:33 by zwode            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,16 +26,16 @@ NAME_O = $(NAME_C:.c=.o)
 RM = /bin/rm -f
 
 $(NAME):
-	gcc $(FLAGS) -c $(NAME_C)
-	ar rc $(NAME) $(NAME_O)
-	ranlib $(NAME)
+	@gcc $(FLAGS) -c $(NAME_C)
+	@ar rc $(NAME) $(NAME_O)
+	@ranlib $(NAME)
 
 all: $(NAME)
 
 clean:
-	$(RM) $(NAME_O)
+	@$(RM) $(NAME_O)
 
 fclean:clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 	
 re: fclean all
