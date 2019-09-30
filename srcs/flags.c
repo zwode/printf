@@ -6,7 +6,7 @@
 /*   By: zwode <zwode@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 17:14:13 by zwode             #+#    #+#             */
-/*   Updated: 2019/09/10 18:37:15 by zwode            ###   ########.fr       */
+/*   Updated: 2019/09/29 20:26:58 by zwode            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,12 @@ void	flag_base(int value, int base)
 	ft_putstr(nbr);
 }
 
-void	flag_u(unsigned num)
+int		flag_u(unsigned num)
 {
 	if (num >= 10)
 		ft_putnbr(num / 10);
 	ft_putchar((num % 10) + '0');
-}
-
-int		ft_nbrlen(unsigned long long num)
-{
-	int i;
-
-	i = 0;
-	while (num >= 10)
-	{
-		num /= 10;
-		i++;
-	}
-	i++;
-	return (i);
+	return (ft_nbrlen(num));
 }
 
 int		flag_ld(long long num)
@@ -97,4 +84,4 @@ int		flag_ld(long long num)
 		i[1]--;
 	}
 	return (1);
-}
+} 

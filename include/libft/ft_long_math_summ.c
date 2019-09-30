@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_long_math_summ.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zwode <zwode@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bglover <bglover@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/05 14:16:51 by bglover           #+#    #+#             */
-/*   Updated: 2019/09/24 07:03:02 by zwode            ###   ########.fr       */
+/*   Created: 2019/08/17 18:13:42 by bglover           #+#    #+#             */
+/*   Updated: 2019/09/20 19:03:19 by bglover          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_putnbr(int n)
+int	*ft_long_math_summ(int *a, int *b, int acc)
 {
-	if (n == -2147483648)
-		ft_putstr("-2147483648");
-	else
+	int *rez;
+	int i;
+	int j;
+
+	i = acc - 1;
+	j = acc - 1;
+	rez = ft_intstr(acc);
+	while (i != -1)
 	{
-		if (n < 0)
+		rez[i] += a[j] + b[j];
+		while (rez[i] >= 10)
 		{
-			ft_putchar('-');
-			n *= -1;
+			rez[i - 1] = rez[i] / 10;
+			rez[i] = rez[i] % 10;
 		}
-		if (n >= 10)
-			ft_putnbr(n / 10);
-		ft_putchar((n % 10) + '0');
+		i--;
+		j--;
 	}
-	return (ft_nbrlen(n));
+	return (rez);
 }

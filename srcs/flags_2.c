@@ -6,7 +6,7 @@
 /*   By: zwode <zwode@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 16:31:06 by zwode             #+#    #+#             */
-/*   Updated: 2019/09/20 19:20:59 by zwode            ###   ########.fr       */
+/*   Updated: 2019/09/29 17:08:30 by zwode            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,36 +37,56 @@ int		flag_llu(unsigned long long num)
 	return (0);
 }
 
-int		ft_atoi_finder(const char *str, char sym)
+int		ft_atoi_finder(const char *str, int sym)
 {
-	int i;
-	int num;
+	int		res;
+	int		i;
 
-	num = 0;
-	i = 0;
-	while (str[i] != sym && str[i] != '\0')
-		i++;
-	if (str[i] == sym)
+	i = sym;
+	res = 0;
+	if (str[i] == '\0')
+		return (0);
+	if (str[i] == '-')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		num = num * 10 + str[i] - '0';
+		res = res * 10 + (str[i] - 48);
 		i++;
 	}
-	num /= 10;
-	return (num);
+	return (res);
 }
 
-void	cheak_point(int num)
+void	cheak_point(const char *form, int i)
 {
-	int i;
+	int num;
+	int b;
 
-	i = 0;
-	if (num < 0)
-		num *= -1;
-	while (num >= i)
+	b = 0;
+	num = ft_atoi_finder(form, i);
+	while (num >= b)
 	{
-		ft_putchar('	');
-		i++;
+		ft_putchar(' ');
+		b++;
 	}
+}
+
+void	cheak_zero(const char *form, int i, int counter)
+{
+	int num;
+
+	num = ft_atoi_finder(form, i) - counter;
+	while (num >= 0 && ft_putchar('0'))
+		num--;
+}
+
+int		cheaker_point(int num, const char *form, int i, va_list ap)
+{
+	int counter;
+
+	counter = 0;
+	if (num == 0)
+		cheak_point(form, i);
+	else
+		cheak_zero(form, i, counter);
+	return (ft_nbrlen(ft_atoi_finder(form, i)));
 }

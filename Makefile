@@ -6,14 +6,14 @@
 #    By: zwode <zwode@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/20 16:00:15 by bglover           #+#    #+#              #
-#    Updated: 2019/09/11 14:18:47 by zwode            ###   ########.fr        #
+#    Updated: 2019/09/26 19:05:21 by zwode            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 C = clang
 
 NAME = libftprintf.a
-NAME_C = ft_printf.c flags_2.c flags.c
+NAME_C = ft_printf.c flags_2.c flags.c ft_print_float.c
 
 DIR_S = srcs
 DIR_O = outF
@@ -23,7 +23,7 @@ OBJS = $(addprefix $(DIR_O)/,$(NAME_C:%.c=%.o))
 
 TEST = srcs/test.c
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = #-Wall -Wextra -Werror
 
 CP = include/libft/libft.a
 
@@ -62,4 +62,5 @@ norm:
 
 gcc: clean
 	@gcc $(TEST) $(NAME)
-	@printf '\033[32m[ ✔ ]compile! %s\n'
+	@printf '\033[32m[ ✔ ]compile! %s\n\033[37m'
+	@./a.out

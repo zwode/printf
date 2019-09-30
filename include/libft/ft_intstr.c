@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   ft_intstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zwode <zwode@student.42.fr>                +#+  +:+       +#+        */
+/*   By: bglover <bglover@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/05 14:10:28 by bglover           #+#    #+#             */
-/*   Updated: 2019/09/25 14:33:38 by zwode            ###   ########.fr       */
+/*   Created: 2019/08/30 18:07:26 by bglover           #+#    #+#             */
+/*   Updated: 2019/09/20 18:38:34 by bglover          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_putchar(char c)
+int	*ft_intstr(int size)
 {
-	return (write(1, &c, 1));
+	int	*str;
+	int i;
+
+	i = -1;
+	if (!size)
+		return (0);
+	str = malloc(sizeof(int) * size);
+	if (!str)
+		return (NULL);
+	while (++i < size)
+		str[i] = 0;
+	return (str);
 }

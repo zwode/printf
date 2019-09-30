@@ -3,7 +3,7 @@
 
 int		main(void)
 {
-	printf("Or printf :%100d\n", 13534543321213);
-	ft_printf("My printf :%100.d\n", 13534543321213);
+	ft_printf("%s", "Sambist");
+	printf("%d", 123); 
 	return(0);
 }
